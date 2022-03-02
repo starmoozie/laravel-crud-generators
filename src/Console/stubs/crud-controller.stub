@@ -19,6 +19,8 @@ class DummyClassCrudController extends CrudController
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+    // use \Starmoozie\LaravelMenuPermission\app\Traits\CheckPermission;
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      * 
@@ -26,9 +28,12 @@ class DummyClassCrudController extends CrudController
      */
     public function setup()
     {
+        $path = request()->segment(2);
+        $heading = str_replace('-', ' ', $path);
+
         CRUD::setModel(\App\Models\DummyClass::class);
-        CRUD::setRoute(config('starmoozie.base.route_prefix') . '/dummy-class');
-        CRUD::setEntityNameStrings('dummy singular', 'dummy plural');
+        CRUD::setRoute(config('starmoozie.base.route_prefix') . "/$path");
+        CRUD::setEntityNameStrings(__("starmoozie::menu_permission.$heading"), __("starmoozie::menu_permission.$heading"));
     }
 
     /**
@@ -38,6 +43,8 @@ class DummyClassCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->checkPermission();
+
         $this->setColumns();
     }
 
@@ -48,6 +55,8 @@ class DummyClassCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        $this->checkPermission();
+
         CRUD::setValidation(DummyClassRequest::class);
 
         $this->setFields();
@@ -70,6 +79,8 @@ class DummyClassCrudController extends CrudController
      */
     protected function setupShowOperation()
     {
+        $this->checkPermission();
+
         $this->setShows();
     }
 
