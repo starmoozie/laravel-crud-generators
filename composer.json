@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "starmoozie/laravel-crud": "1.0.*"
+        "starmoozie/laravel-crud": "2.0.*"
     },
     "require-dev": {
         "phpunit/phpunit" : "^9.0||^7.0",
