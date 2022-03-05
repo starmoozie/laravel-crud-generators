@@ -33,7 +33,7 @@ class DummyClassCrudController extends CrudController
 
         CRUD::setModel(\App\Models\DummyClass::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . "/$path");
-        CRUD::setEntityNameStrings(__("starmoozie::menu_permission.$heading"), __("starmoozie::menu_permission.$heading"));
+        CRUD::setEntityNameStrings(__("starmoozie::title.$heading"), __("starmoozie::title.$heading"));
     }
 
     /**
@@ -43,7 +43,7 @@ class DummyClassCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->checkPermission();
+        // $this->checkPermission();
 
         $this->setColumns();
     }
@@ -55,7 +55,7 @@ class DummyClassCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        $this->checkPermission();
+        // $this->checkPermission();
 
         CRUD::setValidation(DummyClassRequest::class);
 
@@ -79,7 +79,7 @@ class DummyClassCrudController extends CrudController
      */
     protected function setupShowOperation()
     {
-        $this->checkPermission();
+        // $this->checkPermission();
 
         $this->setShows();
     }

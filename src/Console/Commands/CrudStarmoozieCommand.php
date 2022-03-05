@@ -31,7 +31,7 @@ class CrudStarmoozieCommand extends Command
         $name = (string) $this->argument('name');
         $nameTitle = ucfirst(Str::camel($name));
         $nameKebab = Str::kebab($nameTitle);
-        $namePlural = ucfirst(str_replace('-', ' ', Str::plural($nameKebab)));
+        $namePlural = ucfirst(str_replace('-', ' ', $nameKebab));
 
         // Create the CRUD Model and show output
         $this->call('starmoozie:crud-model', ['name' => $nameTitle]);
